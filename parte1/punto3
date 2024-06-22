@@ -1,0 +1,74 @@
+#!/bin/bash
+
+# Ciclo principal del programa
+while true; do
+    	# Mostrar el menú de opciones
+    	echo "Seleccione la operacion a realizar:"
+    	echo "1- Suma"
+    	echo "2- Resta"
+    	echo "3- Multiplicacion"
+    	echo "4- Division"
+    	echo "5- Salir"
+    
+    	# Leer la opción del usuario
+    	read -p "Ingrese opcion: " opcion
+    
+    	# Verificar si la opción ingresada es válida (números del 1 al 5)
+    	if ! [[ $opcion =~ ^[1-5]$ ]]; then
+        	echo "Error. Ingrese opcion valida."
+		echo "------------------------------------"
+        	continue
+    	fi
+    
+    	# Salir del ciclo si la opción es 5 (Salir)
+    	if [ $opcion -eq 5 ]; then
+        	echo "Saliendo..."
+        	break
+    	fi
+    
+    	# Leer los números para la operación (num1 y num2)
+    	read -p "Ingrese primer numero: " num1
+    	read -p "Ingrese segundo numero: " num2
+
+	if ! [[ $num1 =~ ^-?[0-9]+$ ]]; then
+        	echo "Error. Ingrese numeros enteros."
+        	echo "------------------------------------"
+		continue
+	fi
+
+	if ! [[ $num2 =~ ^-?[0-9]+$ ]]; then
+                echo "Error. Ingrese numeros enteros."
+		echo "------------------------------------"
+                continue
+        fi
+    
+    	# Realizar la operación según la opción seleccionada
+    	case $opcion in
+        	1)
+            		# Suma
+            		resultado=$[ $num1 + $num2 ]
+            		echo "El resultado de la suma es: $resultado"
+            		;;
+        	2)
+            		# Resta
+            		resultado=$[ $num1 - $num2 ]   
+            		echo "El resultado de la resta es: $resultado"
+            		;;
+        	3)
+            		# Multiplicación
+            		resultado=$[ $num1 * $num2 ]
+            		echo "El resultado de la multiplicacion es: $resultado"
+            		;;
+        	4)
+            		# División
+            		if [ $num2 -eq 0 ]; then
+            		    	echo "Error. No se puede dividir por cero."
+            		else
+            			resultado=$[ $num1 / $num2 ]
+                		echo "El resultado de la division es: $resultado"
+            		fi
+            		;;
+    	esac
+    
+    	echo "------------------------------------"
+done

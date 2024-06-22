@@ -1,0 +1,38 @@
+#!/bin/bash
+
+while true; do
+	echo "Elegi opcion: "
+	echo "1- Piedra."
+	echo "2- Papel."
+	echo "3- Tijera."
+	echo "4- Dejar de jugar."
+
+	read -p "Ingresa eleccion en base al numero relacionado: " opcion
+	
+	if [[ ! $opcion =~ ^[1-4]$ || -z $opcion ]]; then
+	#if ! [[ $opcion -ge 1 && $opcion -le 4 ]]; then
+    		echo "Error. Ingrese opcion valida."
+		echo "-----------------------------------------"
+		continue
+	fi
+
+	if [ $opcion == 4 ]; then
+		echo "Saliendo..."
+		exit 0
+	fi
+
+	opcion_computadora=$((RANDOM % 3 + 1))
+
+	echo "Seleccionaste: $opcion"
+	echo "Computadora: $opcion_computadora"
+
+	if [ $opcion == $opcion_computadora ]; then
+		echo "Empate!"
+	elif [[ $opcion == 1 && $opcion_computadora == 3 ]] || [[ $opcion == 2 && $opcion_computadora == 1 ]] || [[ $opcion == 3 && $opcion_computadora == 2 ]]; then
+		echo "Ganaste!"
+	else
+		echo "Perdiste!"
+	fi
+
+	echo "-----------------------------------------"
+done
