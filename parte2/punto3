@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #pido y asigno variable nombre
-read -p "Ingrese nombre de ciudad: " nombre
+read -p "Ingrese nombre: " nombre
 
 #forma la url de la api
 URL="https://api.genderize.io/?name=$nombre"
@@ -24,9 +24,9 @@ probabilidadCargada=$(echo "$probabilidad * 100" | bc)
 
 #muestra la informacion en base al genero
 if [ $genero == "female" ]; then
-echo "$nombre es de genero femenino y su probabilidad es $probabilidadCargada%."
+echo "$nombre es de genero femenino y su probabilidad es de $probabilidadCargada%."
 elif [ $genero == "male" ]; then
-echo "$nombre es de genero masculino y su probabilidad es $probabilidadCargada%."
+echo "$nombre es de genero masculino y su probabilidad es de $probabilidadCargada%."
 else
 echo "$nombre no tiene genero"
 fi
